@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Search } from 'lucide-react';
 import { useMindStore } from '../store/useMindStore';
-import { CATEGORY_COLORS, t } from '../lib/tokens';
+import { CATEGORY_COLORS } from '../lib/tokens';
+import { useTheme } from '../lib/ThemeContext';
 import ThoughtCard from '../components/ThoughtCard';
 
 export default function Thoughts() {
+  const { t } = useTheme();
   const { thoughts } = useMindStore();
   const [cat, setCat] = useState('all');
   const [query, setQuery] = useState('');

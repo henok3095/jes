@@ -2,11 +2,11 @@ import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   LayoutDashboard, FileText, Network, Clock,
-  MessageSquare, BarChart2, Settings, Search, X, Zap, Layers,
+  MessageSquare, BarChart2, Settings, Search, X, Zap, Layers, Sun, Moon,
 } from 'lucide-react';
 import { useMindStore } from '../store/useMindStore';
 import { useAuth } from '../lib/AuthContext';
-import { t } from '../lib/tokens';
+import { useTheme } from '../lib/ThemeContext';
 
 const NAV = [
   { to: '/',          icon: LayoutDashboard, label: 'Home' },
@@ -19,6 +19,7 @@ const NAV = [
 ];
 
 function NavItem({ to, icon: Icon, label, onClick }) {
+  const { t } = useTheme();
   return (
     <NavLink
       to={to}
@@ -62,6 +63,7 @@ function NavItem({ to, icon: Icon, label, onClick }) {
 function SidebarContent({ onClose }) {
   const { setSearchOpen, thoughts } = useMindStore();
   const { user } = useAuth();
+  const { mode, toggle, t } = useTheme();
   const name = user?.email?.split('@')[0] ?? '';
   const initial = name ? name[0].toUpperCase() : '?';
 
@@ -85,6 +87,18 @@ function SidebarContent({ onClose }) {
         {onClose && (
           <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', color: t.text.tertiary, padding: 4, display: 'flex', alignItems: 'center' }}>
             <X size={15} />
+          </button>
+        )}
+        {/* Theme toggle — hidden for now */}
+        {false && !onClose && (
+          <button
+            onClick={toggle}
+            title={mode === 'dark' ? 'Switch to light' : 'Switch to dark'}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', color: t.text.tertiary, padding: 4, display: 'flex', alignItems: 'center', transition: 'color 0.12s' }}
+            onMouseEnter={(e) => e.currentTarget.style.color = t.text.secondary}
+            onMouseLeave={(e) => e.currentTarget.style.color = t.text.tertiary}
+          >
+            {mode === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
           </button>
         )}
       </div>
@@ -144,6 +158,7 @@ function SidebarContent({ onClose }) {
 }
 
 export default function Sidebar({ mobileOpen, onMobileClose }) {
+  const { t } = useTheme();
   return (
     <>
       <aside

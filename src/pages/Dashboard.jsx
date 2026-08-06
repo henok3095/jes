@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useMindStore } from '../store/useMindStore';
 import { useAuth } from '../lib/AuthContext';
-import { t } from '../lib/tokens';
+import { useTheme } from '../lib/ThemeContext';
 
 const hour = new Date().getHours();
 const greeting = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
@@ -10,6 +10,7 @@ const greeting = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Go
 export default function Dashboard() {
   const { addThought } = useMindStore();
   const { user } = useAuth();
+  const { t } = useTheme();
   const [draft, setDraft] = useState('');
   const [saved, setSaved] = useState(false);
 

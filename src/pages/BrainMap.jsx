@@ -7,7 +7,8 @@ import '@xyflow/react/dist/style.css';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useMindStore } from '../store/useMindStore';
-import { CATEGORY_COLORS, t } from '../lib/tokens';
+import { CATEGORY_COLORS } from '../lib/tokens';
+import { useTheme } from '../lib/ThemeContext';
 
 // Override React Flow's white control buttons
 const controlsStyle = `
@@ -148,6 +149,7 @@ function buildGraph(thoughts) {
 
 export default function BrainMap() {
   const { thoughts } = useMindStore();
+  const { t } = useTheme();
   const { nodes: init, edges: initEdges } = useMemo(() => buildGraph(thoughts), [thoughts]);
   const [nodes, , onNodesChange] = useNodesState(init);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initEdges);

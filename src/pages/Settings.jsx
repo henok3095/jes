@@ -1,31 +1,27 @@
 import { motion } from 'framer-motion';
 import { useAuth } from '../lib/AuthContext';
-import { t } from '../lib/tokens';
-
-function Row({ label, children }) {
-  return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: '13px 0',
-        borderBottom: `1px solid ${t.border}`,
-      }}
-    >
-      <span style={{ fontSize: 13, color: t.text.secondary }}>{label}</span>
-      <div style={{ fontSize: 13, color: t.text.tertiary }}>{children}</div>
-    </div>
-  );
-}
+import { useTheme } from '../lib/ThemeContext';
 
 export default function Settings() {
+  const { t } = useTheme();
   const { user, signOut } = useAuth();
 
   const name = user?.email?.split('@')[0] ?? '—';
   const joined = user?.created_at
     ? new Date(user.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long' })
     : '—';
+
+  function Row({ label, children }) {
+    return (
+      <div style={{
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        padding: '13px 0', borderBottom: `1px solid ${t.border}`,
+      }}>
+        <span style={{ fontSize: 13, color: t.text.secondary }}>{label}</span>
+        <div style={{ fontSize: 13, color: t.text.tertiary }}>{children}</div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex-1 overflow-y-auto" style={{ padding: '48px 40px' }}>
@@ -38,16 +34,8 @@ export default function Settings() {
         </motion.div>
 
         {/* Account */}
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.05 }}
-          style={{ marginBottom: 40 }}
-        >
-          <p style={{
-            fontSize: 11, fontWeight: 500, color: t.text.tertiary,
-            letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 4,
-          }}>
+        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }} style={{ marginBottom: 40 }}>
+          <p style={{ fontSize: 11, fontWeight: 500, color: t.text.tertiary, letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 4 }}>
             Account
           </p>
           <Row label="Name">{name}</Row>
@@ -56,29 +44,19 @@ export default function Settings() {
         </motion.div>
 
         {/* Actions */}
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          style={{ display: 'flex', flexDirection: 'column', gap: 12 }}
-        >
+        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           <button
             onClick={signOut}
             style={{
-              width: '100%',
-              padding: '11px',
-              borderRadius: 8,
-              fontSize: 13,
-              fontWeight: 500,
-              color: t.text.primary,
-              background: 'rgba(255,255,255,0.06)',
-              border: `1px solid ${t.border}`,
-              cursor: 'pointer',
-              fontFamily: 'inherit',
-              transition: 'background 0.12s',
+              width: '100%', padding: '11px', borderRadius: 8,
+              fontSize: 13, fontWeight: 500, color: t.text.primary,
+              background: t.surface, border: `1px solid ${t.border}`,
+              cursor: 'pointer', fontFamily: 'inherit',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              transition: 'border-color 0.12s',
             }}
-            onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.09)'}
-            onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.06)'}
+            onMouseEnter={(e) => e.currentTarget.style.borderColor = t.borderHover}
+            onMouseLeave={(e) => e.currentTarget.style.borderColor = t.border}
           >
             Sign out
           </button>

@@ -38,9 +38,7 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: rgba(255,255,255,0.92) !important;
   caret-color: rgba(255,255,255,0.92);
   transition: background-color 9999s ease-in-out 0s;
-}
-
-/* Remove browser native validation red outline and underline */
+}/* Remove browser native validation red outline and underline */
 input:invalid {
   box-shadow: none;
   outline: none;

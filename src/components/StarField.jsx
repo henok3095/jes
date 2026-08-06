@@ -1,8 +1,9 @@
 import { useEffect, useRef } from 'react';
+import { useTheme } from '../lib/ThemeContext';
 
-// Very subtle — just barely visible noise/grain effect
 export default function StarField() {
   const canvasRef = useRef(null);
+  const { mode } = useTheme();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -45,6 +46,9 @@ export default function StarField() {
       window.removeEventListener('resize', resize);
     };
   }, []);
+
+  // Don't show stars in light mode
+  if (mode === 'light') return null;
 
   return (
     <canvas

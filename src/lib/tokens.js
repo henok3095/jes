@@ -1,4 +1,5 @@
-// Design tokens — single source of truth
+// Static fallback tokens (dark) — used in files outside ThemeContext
+// For live theming use useTheme() from ThemeContext
 export const t = {
   bg: '#080808',
   surface: '#0f0f0f',

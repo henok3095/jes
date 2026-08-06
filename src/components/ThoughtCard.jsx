@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { CATEGORY_COLORS, t } from '../lib/tokens';
+import { CATEGORY_COLORS } from '../lib/tokens';
+import { useTheme } from '../lib/ThemeContext';
 
 export default function ThoughtCard({ thought, index = 0 }) {
+  const { t } = useTheme();
   const navigate = useNavigate();
   const cat = CATEGORY_COLORS[thought.category];
 

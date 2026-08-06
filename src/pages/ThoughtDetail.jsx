@@ -3,10 +3,12 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Trash2 } from 'lucide-react';
 import { useMindStore } from '../store/useMindStore';
-import { CATEGORY_COLORS, t } from '../lib/tokens';
+import { CATEGORY_COLORS } from '../lib/tokens';
+import { useTheme } from '../lib/ThemeContext';
 import ThoughtCard from '../components/ThoughtCard';
 
 export default function ThoughtDetail() {
+  const { t } = useTheme();
   const { id } = useParams();
   const navigate = useNavigate();
   const { thoughts, deleteThought } = useMindStore();

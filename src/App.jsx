@@ -3,8 +3,8 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu } from 'lucide-react';
 import { useAuth } from './lib/AuthContext';
+import { useTheme } from './lib/ThemeContext';
 import { useMindStore } from './store/useMindStore';
-import { t } from './lib/tokens';
 import StarField from './components/StarField';
 import Sidebar from './components/Sidebar';
 import SearchModal from './components/SearchModal';
@@ -33,68 +33,46 @@ function Page({ children }) {
   );
 }
 
-// Loading screen
-function Loading() {
-  return (
-    <div style={{
-      minHeight: '100vh',
-      background: t.bg,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}>
-      <motion.div
-        animate={{ opacity: [0.3, 0.8, 0.3] }}
-        transition={{ duration: 1.6, repeat: Infinity }}
-        style={{ fontSize: 13, color: t.text.tertiary }}
-      >
-        Loading...
-      </motion.div>
-    </div>
-  );
-}
-
 export default function App() {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const { user } = useAuth();
   const { fetchThoughts, clearThoughts } = useMindStore();
+  const { t } = useTheme();
 
-  // Load thoughts when user signs in, clear when they sign out
   useEffect(() => {
-    if (user) {
-      fetchThoughts();
-    } else if (user === null) {
-      clearThoughts();
-    }
+    if (user) fetchThoughts();
+    else if (user === null) clearThoughts();
   }, [user]);
 
-  // Still resolving session
-  if (user === undefined) return <Loading />;
+  if (user === undefined) {
+    return (
+      <div style={{ minHeight: '100vh', background: t.bg, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <motion.div
+          animate={{ opacity: [0.3, 0.8, 0.3] }}
+          transition={{ duration: 1.6, repeat: Infinity }}
+          style={{ fontSize: 13, color: t.text.tertiary }}
+        >
+          Loading...
+        </motion.div>
+      </div>
+    );
+  }
 
-  // Not signed in → show auth screen
   if (user === null) return <Auth />;
 
-  // Signed in → show app
   return (
     <div style={{ display: 'flex', height: '100%', width: '100%', overflow: 'hidden', background: t.bg }}>
       <StarField />
-
-      {/* Mobile menu trigger */}
       <button
         onClick={() => setMobileOpen(true)}
         className="lg:hidden"
         style={{
-          position: 'fixed',
-          top: 14,
-          left: 14,
-          zIndex: 30,
-          padding: 8,
-          borderRadius: 8,
+          position: 'fixed', top: 14, left: 14, zIndex: 30,
+          padding: 8, borderRadius: 8,
           background: 'rgba(255,255,255,0.06)',
           border: `1px solid ${t.border}`,
-          color: t.text.secondary,
-          cursor: 'pointer',
+          color: t.text.secondary, cursor: 'pointer',
         }}
       >
         <Menu size={16} />

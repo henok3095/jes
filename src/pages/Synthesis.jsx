@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, RefreshCw, ChevronDown } from 'lucide-react';
 import { useMindStore } from '../store/useMindStore';
-import { CATEGORY_COLORS, t } from '../lib/tokens';
+import { CATEGORY_COLORS } from '../lib/tokens';
+import { useTheme } from '../lib/ThemeContext';
 import { synthesizeThoughts } from '../lib/groq';
 
 function ClusterCard({ cluster, index }) {
@@ -122,6 +123,7 @@ function ClusterCard({ cluster, index }) {
 }
 
 export default function Synthesis() {
+  const { t } = useTheme();
   const { thoughts } = useMindStore();
   const [clusters, setClusters] = useState(null);
   const [loading, setLoading] = useState(false);

@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useMindStore } from '../store/useMindStore';
-import { CATEGORY_COLORS, t } from '../lib/tokens';
+import { CATEGORY_COLORS } from '../lib/tokens';
+import { useTheme } from '../lib/ThemeContext';
 
 export default function Timeline() {
+  const { t } = useTheme();
   const { thoughts } = useMindStore();
   const navigate = useNavigate();
   const [selected, setSelected] = useState(null);

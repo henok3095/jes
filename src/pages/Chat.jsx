@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUp, RotateCcw } from 'lucide-react';
-import { t } from '../lib/tokens';
+import { useTheme } from '../lib/ThemeContext';
 import { askGroq } from '../lib/groq';
 import { useMindStore } from '../store/useMindStore';
 
@@ -15,6 +15,7 @@ const SUGGESTED = [
 const WELCOME = "I've read through your vault. Your mind has a clear shape. What do you want to understand about it?";
 
 export default function Chat() {
+  const { t } = useTheme();
   const { thoughts } = useMindStore();
   const [messages, setMessages] = useState([
     { id: '0', role: 'ai', text: WELCOME, streaming: false },

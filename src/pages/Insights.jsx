@@ -5,7 +5,8 @@ import {
   AreaChart, Area,
 } from 'recharts';
 import { useMindStore } from '../store/useMindStore';
-import { CATEGORY_COLORS, t } from '../lib/tokens';
+import { CATEGORY_COLORS } from '../lib/tokens';
+import { useTheme } from '../lib/ThemeContext';
 
 const TOOLTIP_STYLE = {
   background: '#111',
@@ -16,7 +17,7 @@ const TOOLTIP_STYLE = {
   boxShadow: 'none',
 };
 
-function Section({ title, children, delay = 0 }) {
+function Section({ title, children, delay = 0, t }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -119,6 +120,7 @@ function computeObservations(thoughts, catData, totalLinks) {
 
 export default function Insights() {
   const { thoughts } = useMindStore();
+  const { t } = useTheme();
 
   const catData = useMemo(() =>
     Object.entries(CATEGORY_COLORS)
@@ -160,7 +162,7 @@ export default function Insights() {
         </motion.div>
 
         {/* Overview numbers */}
-        <Section title="Overview" delay={0.05}>
+        <Section title="Overview" delay={0.05} t={t}>
           <div className="grid grid-cols-2 gap-3">
             {[
               { label: 'Total thoughts', value: thoughts.length },
@@ -193,7 +195,7 @@ export default function Insights() {
 
         {/* Growth over time */}
         {monthlyData.length > 0 && (
-          <Section title="Growth" delay={0.15}>
+          <Section title="Growth" delay={0.15} t={t}>
             <div style={{ background: t.surface, border: `1px solid ${t.border}`, borderRadius: 12, padding: '20px' }}>
               {monthlyData.length < 2 ? (
                 <p style={{ fontSize: 13, color: t.text.tertiary, textAlign: 'center', padding: '24px 0' }}>
@@ -221,7 +223,7 @@ export default function Insights() {
 
         {/* Category breakdown */}
         {catData.length > 0 && (
-          <Section title="Categories" delay={0.2}>
+          <Section title="Categories" delay={0.2} t={t}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               {catData.map(({ id, dot, label, count }, i) => (
                 <motion.div
@@ -252,7 +254,7 @@ export default function Insights() {
 
         {/* Top tags */}
         {topTags.length > 0 && (
-          <Section title="Top tags" delay={0.25}>
+          <Section title="Top tags" delay={0.25} t={t}>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
               {topTags.map(({ tag, count }, i) => (
                 <motion.div
@@ -282,7 +284,7 @@ export default function Insights() {
 
         {/* Category bar chart */}
         {catData.length > 1 && (
-          <Section title="By category" delay={0.3}>
+          <Section title="By category" delay={0.3} t={t}>
             <div style={{ background: t.surface, border: `1px solid ${t.border}`, borderRadius: 12, padding: '20px' }}>
               <ResponsiveContainer width="100%" height={140}>
                 <BarChart data={catData} margin={{ top: 4, right: 4, bottom: 0, left: -24 }} barSize={14}>
@@ -301,7 +303,7 @@ export default function Insights() {
         )}
 
         {/* Observations */}
-        <Section title="Observations" delay={0.35}>
+        <Section title="Observations" delay={0.35} t={t}>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             {observations.map(({ text, em }, i) => (
               <motion.div
