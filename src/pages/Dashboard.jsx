@@ -64,7 +64,7 @@ export default function Dashboard() {
             value={draft}
             onChange={(e) => setDraft(e.target.value)}
             onKeyDown={(e) => {
-              if (e.key === 'Enter' && !e.shiftKey) {
+              if (e.key === 'Enter' && e.shiftKey) {
                 e.preventDefault();
                 capture();
               }
@@ -95,7 +95,7 @@ export default function Dashboard() {
             }}
           >
             <span style={{ fontSize: 11, color: t.text.tertiary }}>
-              {draft.length > 0 ? `${draft.length} chars` : 'Enter to save · Shift+Enter for new line'}
+              {draft.length > 0 ? `${draft.length} chars` : 'Shift+Enter to save · Enter for new line'}
             </span>
 
             <motion.button
