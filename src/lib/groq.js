@@ -218,9 +218,10 @@ ${thoughtsText}
 Instructions:
 - Group the thoughts into 2-5 meaningful thematic clusters
 - Each cluster should reveal a pattern the person may not have consciously noticed
-- For each cluster, write a short, flowing paragraph (3-5 sentences) in second person ("You...") that synthesizes the thoughts into something insightful and surprising
-- The writing should feel like a mirror — the person should read it and think "I never saw it that way but that's exactly right"
-- Give each cluster a short, evocative title (not generic like "Technology" — something like "Building the machine" or "The hunger to connect")
+- For each cluster, write a short, grounded paragraph (3-5 sentences) in second person ("You...") that synthesizes the thoughts into something insightful
+- Be direct and honest — not overly poetic or dramatic. Speak like a sharp, trusted friend
+- Give each cluster a short, evocative title that captures the real theme
+- Only work with the actual content of the thoughts — don't invent meaning that isn't there
 
 Respond ONLY with a valid JSON array. No markdown, no explanation. Format:
 [
