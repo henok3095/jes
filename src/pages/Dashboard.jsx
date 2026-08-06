@@ -33,7 +33,7 @@ export default function Dashboard() {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '40px 24px',
+        padding: 'clamp(20px, 5vw, 40px) clamp(16px, 5vw, 24px)',
       }}
     >
       <motion.div

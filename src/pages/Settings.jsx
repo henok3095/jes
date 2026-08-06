@@ -24,7 +24,7 @@ export default function Settings() {
   }
 
   return (
-    <div className="flex-1 overflow-y-auto" style={{ padding: '48px 40px' }}>
+    <div className="flex-1 overflow-y-auto" style={{ padding: 'clamp(24px, 5vw, 48px) clamp(16px, 5vw, 40px)' }}>
       <div style={{ maxWidth: 480, margin: '0 auto' }}>
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ marginBottom: 40 }}>

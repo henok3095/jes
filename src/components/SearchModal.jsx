@@ -53,7 +53,7 @@ export default function SearchModal() {
             onClick={() => setSearchOpen(false)}
           />
 
-          <div className="fixed inset-0 z-50 flex items-start justify-center pt-24 px-4 pointer-events-none">
+          <div className="fixed inset-0 z-50 flex items-start justify-center pt-12 sm:pt-24 px-4 pointer-events-none">
             <motion.div
               initial={{ opacity: 0, y: -12, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}

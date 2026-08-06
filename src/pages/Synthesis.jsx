@@ -2,11 +2,10 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, RefreshCw, ChevronDown } from 'lucide-react';
 import { useMindStore } from '../store/useMindStore';
-import { CATEGORY_COLORS } from '../lib/tokens';
 import { useTheme } from '../lib/ThemeContext';
 import { synthesizeThoughts } from '../lib/groq';
 
-function ClusterCard({ cluster, index }) {
+function ClusterCard({ cluster, index, t }) {
   const [expanded, setExpanded] = useState(true);
 
   return (
@@ -147,7 +146,7 @@ export default function Synthesis() {
   };
 
   return (
-    <div className="flex-1 overflow-y-auto" style={{ padding: '48px 40px' }}>
+    <div className="flex-1 overflow-y-auto" style={{ padding: 'clamp(24px, 5vw, 48px) clamp(16px, 5vw, 40px)' }}>
       <div style={{ maxWidth: 640, margin: '0 auto' }}>
 
         {/* Header */}
@@ -259,7 +258,7 @@ export default function Synthesis() {
               {clusters.length} theme{clusters.length !== 1 ? 's' : ''} found
             </p>
             {clusters.map((cluster, i) => (
-              <ClusterCard key={i} cluster={cluster} index={i} />
+              <ClusterCard key={i} cluster={cluster} index={i} t={t} />
             ))}
           </motion.div>
         )}

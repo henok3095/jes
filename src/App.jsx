@@ -81,6 +81,8 @@ export default function App() {
       <Sidebar mobileOpen={mobileOpen} onMobileClose={() => setMobileOpen(false)} />
 
       <main style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0, overflow: 'hidden', position: 'relative', zIndex: 10 }}>
+        {/* Spacer for mobile menu button */}
+        <div className="lg:hidden" style={{ height: 48, flexShrink: 0 }} />
         <AnimatePresence mode="wait" initial={false}>
           <Routes location={location} key={location.pathname}>
             <Route path="/"            element={<Page><Dashboard /></Page>} />

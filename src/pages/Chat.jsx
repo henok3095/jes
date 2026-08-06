@@ -87,7 +87,7 @@ export default function Chat() {
       <div
         style={{
           flexShrink: 0,
-          padding: '14px 24px',
+          padding: '14px clamp(12px, 3vw, 24px)',
           borderBottom: `1px solid ${t.border}`,
           display: 'flex',
           alignItems: 'center',
@@ -110,7 +110,7 @@ export default function Chat() {
       </div>
 
       {/* Messages */}
-      <div style={{ flex: 1, overflowY: 'auto', padding: '24px' }}>
+      <div style={{ flex: 1, overflowY: 'auto', padding: 'clamp(12px, 3vw, 24px)' }}>
         <div style={{ maxWidth: 580, margin: '0 auto' }}>
           <AnimatePresence initial={false}>
             {messages.map((msg) => (
@@ -167,7 +167,7 @@ export default function Chat() {
       </div>
 
       {/* Suggestions */}
-      <div style={{ flexShrink: 0, padding: '0 24px 8px' }}>
+      <div style={{ flexShrink: 0, padding: '0 clamp(12px, 3vw, 24px) 8px' }}>
         <div style={{ maxWidth: 580, margin: '0 auto' }}>
           <div style={{ display: 'flex', gap: 6, overflowX: 'auto', paddingBottom: 4 }}>
             {SUGGESTED.map((s) => (
@@ -199,7 +199,7 @@ export default function Chat() {
       </div>
 
       {/* Input */}
-      <div style={{ flexShrink: 0, padding: '8px 24px 24px' }}>
+      <div style={{ flexShrink: 0, padding: '8px clamp(12px, 3vw, 24px) clamp(16px, 3vw, 24px)' }}>
         <div style={{ maxWidth: 580, margin: '0 auto' }}>
           <div
             style={{

@@ -178,9 +178,9 @@ export default function Sidebar({ mobileOpen, onMobileClose }) {
               className="lg:hidden"
             />
             <motion.aside
-              initial={{ x: -240 }} animate={{ x: 0 }} exit={{ x: -240 }}
+              initial={{ x: '-100%' }} animate={{ x: 0 }} exit={{ x: -240 }}
               transition={{ type: 'tween', duration: 0.2, ease: 'easeOut' }}
-              style={{ position: 'fixed', top: 0, left: 0, bottom: 0, zIndex: 50, width: 240, background: t.surface, borderRight: `1px solid ${t.border}`, display: 'flex', flexDirection: 'column' }}
+              style={{ position: 'fixed', top: 0, left: 0, bottom: 0, zIndex: 50, width: 'min(240px, 85vw)', background: t.surface, borderRight: `1px solid ${t.border}`, display: 'flex', flexDirection: 'column' }}
               className="lg:hidden"
             >
               <SidebarContent onClose={onMobileClose} />

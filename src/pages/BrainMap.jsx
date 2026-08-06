@@ -174,7 +174,7 @@ export default function BrainMap() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        style={{ position: 'absolute', top: 24, left: 24, zIndex: 10, pointerEvents: 'none' }}
+        style={{ position: 'absolute', top: 'clamp(12px, 3vw, 24px)', left: 'clamp(12px, 3vw, 24px)', zIndex: 10, pointerEvents: 'none' }}
       >
         <h1 style={{ fontSize: 15, fontWeight: 600, color: t.text.primary }}>Brain Map</h1>
         <p style={{ fontSize: 12, color: t.text.tertiary, marginTop: 2 }}>

@@ -34,7 +34,7 @@ export default function ThoughtDetail() {
   };
 
   return (
-    <div className="flex-1 overflow-y-auto" style={{ padding: '48px 40px' }}>
+    <div className="flex-1 overflow-y-auto" style={{ padding: 'clamp(24px, 5vw, 48px) clamp(16px, 5vw, 40px)' }}>
       <div style={{ maxWidth: 620, margin: '0 auto' }}>
 
         {/* Back + delete row */}

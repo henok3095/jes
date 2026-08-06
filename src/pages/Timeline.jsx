@@ -26,7 +26,7 @@ export default function Timeline() {
     new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 
   return (
-    <div className="flex-1 overflow-y-auto" style={{ padding: '48px 40px' }}>
+    <div className="flex-1 overflow-y-auto" style={{ padding: 'clamp(24px, 5vw, 48px) clamp(16px, 5vw, 40px)' }}>
       <div style={{ maxWidth: 680, margin: '0 auto' }}>
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ marginBottom: 36 }}>
           <h1 style={{ fontSize: 24, fontWeight: 600, color: t.text.primary, letterSpacing: '-0.025em' }}>
