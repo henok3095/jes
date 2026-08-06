@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: #080808;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 99px; }
+
+/* Selection */
+::selection { background: rgba(255,255,255,0.12); }
+
+/* Kill browser autofill white background */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 999px #0f0f0f inset !important;
+  box-shadow: 0 0 0 999px #0f0f0f inset !important;
+  -webkit-text-fill-color: rgba(255,255,255,0.92) !important;
+  caret-color: rgba(255,255,255,0.92);
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+/* Remove browser native validation red outline and underline */
+input:invalid {
+  box-shadow: none;
+  outline: none;
+}
+input[type="email"]:invalid {
+  box-shadow: none;
+  outline: none;
+  text-decoration: none;
+}
+input {
+  text-decoration: none;
+}
+/* React Flow overrides */
+.react-flow__panel { display: none; }
+.react-flow__attribution { display: none !important; }
